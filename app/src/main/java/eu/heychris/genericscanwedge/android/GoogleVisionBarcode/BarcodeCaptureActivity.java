@@ -13,12 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.darryncampbell.genericscanwedge.genericscanwedge.GoogleVisionBarcode;
+package eu.heychris.genericscanwedge.android.GoogleVisionBarcode;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -28,10 +26,6 @@ import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -39,16 +33,22 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import eu.heychris.genericscanwedge.android.GoogleVisionBarcode.ui.camera.CameraSource;
+import eu.heychris.genericscanwedge.android.GoogleVisionBarcode.ui.camera.CameraSourcePreview;
+import eu.heychris.genericscanwedge.android.GoogleVisionBarcode.ui.camera.GraphicOverlay;
+import com.darryncampbell.genericscanwedge.genericscanwedge.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.CommonStatusCodes;
-import com.darryncampbell.genericscanwedge.genericscanwedge.GoogleVisionBarcode.ui.camera.CameraSource;
-import com.darryncampbell.genericscanwedge.genericscanwedge.GoogleVisionBarcode.ui.camera.CameraSourcePreview;
-import com.darryncampbell.genericscanwedge.genericscanwedge.GoogleVisionBarcode.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
-import com.darryncampbell.genericscanwedge.genericscanwedge.R;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.IOException;
 
@@ -130,15 +130,10 @@ public final class BarcodeCaptureActivity extends AppCompatActivity {
             return;
         }
 
-        final Activity thisActivity = this;
+        final AppCompatActivity thisActivity = this;
 
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ActivityCompat.requestPermissions(thisActivity, permissions,
-                        RC_HANDLE_CAMERA_PERM);
-            }
-        };
+        View.OnClickListener listener = view -> ActivityCompat.requestPermissions(thisActivity, permissions,
+                RC_HANDLE_CAMERA_PERM);
 
         Snackbar.make(mGraphicOverlay, R.string.permission_camera_rationale,
                 Snackbar.LENGTH_INDEFINITE)
@@ -289,11 +284,7 @@ public final class BarcodeCaptureActivity extends AppCompatActivity {
         Log.e(TAG, "Permission not granted: results len = " + grantResults.length +
                 " Result code = " + (grantResults.length > 0 ? grantResults[0] : "(empty)"));
 
-        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                finish();
-            }
-        };
+        DialogInterface.OnClickListener listener = (dialog, id) -> finish();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Multitracker sample")

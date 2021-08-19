@@ -15,12 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <service
-            android:name=".GenericScanWedgeService"
+            android:name="eu.heychris.genericscanwedge.android.GenericScanWedgeService"
             android:enabled="true"
             android:exported="true" />
 
         <receiver
-            android:name=".GenericScanWedgeIntentReceiver"
+            android:name="eu.heychris.genericscanwedge.android.GenericScanWedgeIntentReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -43,13 +43,13 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".ZxingActivity" />
-        <activity android:name=".GoogleVisionBarcodeActivity" />
+        <activity android:name="eu.heychris.genericscanwedge.android.ZxingActivity" />
+        <activity android:name="eu.heychris.genericscanwedge.android.GoogleVisionBarcodeActivity" />
         <activity
-            android:name=".GoogleVisionBarcode.BarcodeCaptureActivity"
+            android:name="eu.heychris.genericscanwedge.android.GoogleVisionBarcode.BarcodeCaptureActivity"
             android:label="Read Barcode" />
         <activity
-            android:name=".MainActivity"
+            android:name="eu.heychris.genericscanwedge.android.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -59,18 +59,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ProfileConfiguration"
+            android:name="eu.heychris.genericscanwedge.android.ProfileConfiguration"
             android:label="@string/title_activity_profile_configuration"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".DeviceListActivity"
+            android:name="eu.heychris.genericscanwedge.android.DeviceListActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/select_device"
             android:theme="@android:style/Theme.DeviceDefault.Dialog" />
 
         <service
-            android:name=".BluetoothConnectionService"
-            android:exported="false"></service>
+            android:name="eu.heychris.genericscanwedge.android.BluetoothConnectionService"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package com.darryncampbell.genericscanwedge.genericscanwedge;
+package eu.heychris.genericscanwedge.android;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -30,7 +30,7 @@ public class Profile implements Serializable {
         this.profileEnabled = enabledByDefault;
         this.scanningEngine = ScanningEngine.SCANNING_ENGINE_ZXING;
         this.barcodeInputEnabled = true;
-        this.decodersEnabled = new HashMap<String, Boolean>();
+        this.decodersEnabled = new HashMap<>();
         this.decodersEnabled.put(DECODER_UPCA, true);
         this.decodersEnabled.put(DECODER_UPCE, true);
         this.decodersEnabled.put(DECODER_EAN8, true);

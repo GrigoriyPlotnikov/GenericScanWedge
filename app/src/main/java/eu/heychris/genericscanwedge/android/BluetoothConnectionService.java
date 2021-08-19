@@ -1,4 +1,4 @@
-package com.darryncampbell.genericscanwedge.genericscanwedge;
+package eu.heychris.genericscanwedge.android;
 
 import android.app.IntentService;
 import android.bluetooth.BluetoothAdapter;
@@ -137,12 +137,9 @@ public class BluetoothConnectionService extends NonStopIntentService {
     public void ShowToastInIntentService(final String sText) {
         final Context MyContext = this;
 
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
-            @Override
-            public void run() {
-                Toast toast1 = Toast.makeText(MyContext, sText, Toast.LENGTH_SHORT);
-                toast1.show();
-            }
+        new Handler(Looper.getMainLooper()).post(() -> {
+            Toast toast1 = Toast.makeText(MyContext, sText, Toast.LENGTH_SHORT);
+            toast1.show();
         });
     };
 }

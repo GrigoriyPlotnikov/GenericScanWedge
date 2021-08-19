@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.darryncampbell.genericscanwedge.genericscanwedge.GoogleVisionBarcode.ui.camera;
+package eu.heychris.genericscanwedge.android.GoogleVisionBarcode.ui.camera;
 
 import android.content.Context;
 import android.graphics.Canvas;

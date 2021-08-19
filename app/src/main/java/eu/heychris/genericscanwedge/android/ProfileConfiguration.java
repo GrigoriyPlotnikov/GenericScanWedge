@@ -1,18 +1,10 @@
-package com.darryncampbell.genericscanwedge.genericscanwedge;
+package eu.heychris.genericscanwedge.android;
 
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,6 +15,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.darryncampbell.genericscanwedge.genericscanwedge.R;
 
 import java.util.ArrayList;
 
@@ -63,12 +60,10 @@ public class ProfileConfiguration extends AppCompatActivity implements CompoundB
 
         //  For each control, set the current value and add an event listener to process changes.
         final Button button = (Button) findViewById(R.id.btnAdminDeleteProfile);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                profiles.remove(position);
-                MainActivity.saveProfiles(profiles, getApplicationContext());
-                finish();
-            }
+        button.setOnClickListener(v -> {
+            profiles.remove(position);
+            MainActivity.saveProfiles(profiles, getApplicationContext());
+            finish();
         });
 
         EditText editTextProfileName = (EditText) findViewById(R.id.editProfileName);
@@ -306,10 +301,11 @@ public class ProfileConfiguration extends AppCompatActivity implements CompoundB
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case REQUEST_CONNECT_DEVICE:
                 // When DeviceListActivity returns with a device to connect
-                if (resultCode == Activity.RESULT_OK) {
+                if (resultCode == AppCompatActivity.RESULT_OK) {
                     //  Find the active profile
                     Profile activeProfile = null;
                     for (int i = 0; i < profiles.size(); i++) {

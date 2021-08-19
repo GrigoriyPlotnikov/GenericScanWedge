@@ -1,4 +1,4 @@
-package com.darryncampbell.genericscanwedge.genericscanwedge;
+package eu.heychris.genericscanwedge.android;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

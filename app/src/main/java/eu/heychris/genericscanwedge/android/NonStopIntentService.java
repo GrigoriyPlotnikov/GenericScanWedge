@@ -1,4 +1,4 @@
-package com.darryncampbell.genericscanwedge.genericscanwedge;
+package eu.heychris.genericscanwedge.android;
 
 import android.app.Service;
 import android.content.Intent;
@@ -7,8 +7,6 @@ import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
-
-import static android.app.Service.START_STICKY;
 
 /**
  * Created by darry on 09/08/2017.

@@ -1,9 +1,11 @@
-package com.darryncampbell.genericscanwedge.genericscanwedge;
+package eu.heychris.genericscanwedge.android;
 
 import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+
+import com.darryncampbell.genericscanwedge.genericscanwedge.R;
 
 import java.util.ArrayList;
 

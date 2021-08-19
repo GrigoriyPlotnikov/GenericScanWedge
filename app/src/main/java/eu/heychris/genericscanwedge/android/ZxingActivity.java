@@ -1,4 +1,4 @@
-package com.darryncampbell.genericscanwedge.genericscanwedge;
+package eu.heychris.genericscanwedge.android;
 
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -6,11 +6,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.darryncampbell.genericscanwedge.genericscanwedge.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -35,7 +37,7 @@ public class ZxingActivity extends AppCompatActivity {
         //  Launching Zebra Crossing
         IntentIntegrator integrator = new IntentIntegrator(this);
         //  Specify the enabled decoders in ZXing (based on the active profile)
-        ArrayList<String> desiredDecoders = new ArrayList<String>();
+        ArrayList<String> desiredDecoders = new ArrayList<>();
         if (activeProfile.isDecoderEnabled(Profile.DECODER_UPCA))
             desiredDecoders.add("UPC_A");
         if (activeProfile.isDecoderEnabled(Profile.DECODER_UPCE))
@@ -68,10 +70,11 @@ public class ZxingActivity extends AppCompatActivity {
     //  Receive the barcode scan from the ZXing library
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
         IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
         if (scanResult != null) {
             // handle scan result
-            if(scanResult.getContents() == null) {
+            if (scanResult.getContents() == null) {
                 //  User pressed the back key
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
                 sendMainActivityFinishIntent();
@@ -98,20 +101,14 @@ public class ZxingActivity extends AppCompatActivity {
                     } catch (ActivityNotFoundException e) {
                         Log.w(LOG_TAG, "No Activity found to handle barcode.  Current profile action is " + this.activeProfile.getIntentAction());
                     }
-                }
-                else if (this.activeProfile.getIntentDelivery() == Profile.IntentDelivery.INTENT_DELIVERY_START_SERVICE)
-                {
+                } else if (this.activeProfile.getIntentDelivery() == Profile.IntentDelivery.INTENT_DELIVERY_START_SERVICE) {
                     try {
                         startService(createExplicitFromImplicitIntent(getApplicationContext(), barcodeIntent));
                         sendMainActivityFinishIntent();
-                    }
-                    catch (Exception e)
-                    {
+                    } catch (Exception e) {
                         Log.w(LOG_TAG, "No Service found to handle barcode.  Current profile action is " + this.activeProfile.getIntentAction());
                     }
-                }
-                else if (this.activeProfile.getIntentDelivery() == Profile.IntentDelivery.INTENT_DELIVERY_BROADCAST_INTENT)
-                {
+                } else if (this.activeProfile.getIntentDelivery() == Profile.IntentDelivery.INTENT_DELIVERY_BROADCAST_INTENT) {
                     if (this.activeProfile.getReceiverForegroundFlag())
                         barcodeIntent.addFlags(Intent.FLAG_RECEIVER_FOREGROUND);
                     sendBroadcast(barcodeIntent);

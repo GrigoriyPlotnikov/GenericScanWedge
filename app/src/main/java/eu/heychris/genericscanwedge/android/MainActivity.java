@@ -1,13 +1,16 @@
-package com.darryncampbell.genericscanwedge.genericscanwedge;
+package eu.heychris.genericscanwedge.android;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+;
 import android.util.Log;
-import android.view.View;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.darryncampbell.genericscanwedge.genericscanwedge.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -38,13 +41,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                profilesListAdapter.add(new Profile("New Profile", false));
-                profilesListAdapter.notifyDataSetChanged();
-                saveProfiles(profiles, getApplicationContext());
-            }
+        fab.setOnClickListener(view -> {
+            profilesListAdapter.add(new Profile("New Profile", false));
+            profilesListAdapter.notifyDataSetChanged();
+            saveProfiles(profiles, getApplicationContext());
         });
     }
 

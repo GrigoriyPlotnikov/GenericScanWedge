@@ -15,7 +15,7 @@
  */
 
 //  USED WITHOUT MODIFICATION EXCEPTING THE PACKAGE NAME UNDER THE TERMS OF THE APACHE LICENSE
-package com.darryncampbell.genericscanwedge.genericscanwedge;
+package eu.heychris.genericscanwedge.android;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -34,6 +34,10 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.darryncampbell.genericscanwedge.genericscanwedge.R;
+
 import java.util.Set;
 
 /**
@@ -42,7 +46,7 @@ import java.util.Set;
  * by the user, the MAC address of the device is sent back to the parent
  * Activity in the result Intent.
  */
-public class DeviceListActivity extends Activity {
+public class DeviceListActivity extends AppCompatActivity {
 
     /**
      * Tag for Log
@@ -77,18 +81,16 @@ public class DeviceListActivity extends Activity {
 
         // Initialize the button to perform device discovery
         Button scanButton = (Button) findViewById(R.id.button_scan);
-        scanButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                doDiscovery();
-                v.setVisibility(View.GONE);
-            }
+        scanButton.setOnClickListener(v -> {
+            doDiscovery();
+            v.setVisibility(View.GONE);
         });
 
         // Initialize array adapters. One for already paired devices and
         // one for newly discovered devices
         ArrayAdapter<String> pairedDevicesArrayAdapter =
-                new ArrayAdapter<String>(this, R.layout.device_name);
-        mNewDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.device_name);
+                new ArrayAdapter<>(this, R.layout.device_name);
+        mNewDevicesArrayAdapter = new ArrayAdapter<>(this, R.layout.device_name);
 
         // Find and set up the ListView for paired devices
         ListView pairedListView = (ListView) findViewById(R.id.paired_devices);

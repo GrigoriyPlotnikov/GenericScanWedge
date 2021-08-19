@@ -13,17 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.darryncampbell.genericscanwedge.genericscanwedge.GoogleVisionBarcode.ui.camera;
+package eu.heychris.genericscanwedge.android.GoogleVisionBarcode.ui.camera;
 
 import android.Manifest;
 import android.content.Context;
 import android.content.res.Configuration;
-import android.support.annotation.RequiresPermission;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.ViewGroup;
+
+import androidx.annotation.RequiresPermission;
 
 import com.google.android.gms.common.images.Size;
 

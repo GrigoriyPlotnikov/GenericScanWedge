@@ -40,7 +40,7 @@
     <!-- End imported from Google Vision Barcode Samples project -->
 
     <!--  DeviceListActivity -->
-    <string name="scanning">scanning for devices...</string>
+    <string name="scanning">scanning for devices…</string>
     <string name="select_device">select a device to connect</string>
     <string name="none_paired">No devices have been paired</string>
     <string name="none_found">No devices found</string>

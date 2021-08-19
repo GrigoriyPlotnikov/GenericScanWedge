@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.darryncampbell.genericscanwedge.genericscanwedge.GoogleVisionBarcode.ui.camera;
+package eu.heychris.genericscanwedge.android.GoogleVisionBarcode.ui.camera;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -25,9 +25,9 @@ import android.hardware.Camera;
 import android.hardware.Camera.CameraInfo;
 import android.os.Build;
 import android.os.SystemClock;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresPermission;
-import android.support.annotation.StringDef;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresPermission;
+import androidx.annotation.StringDef;
 import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
@@ -70,7 +70,6 @@ import java.util.Map;
  * <li>android.permissions.CAMERA</li>
  * </ul>
  */
-@SuppressWarnings("deprecation")
 public class CameraSource {
     @SuppressLint("InlinedApi")
     public static final int CAMERA_FACING_BACK = CameraInfo.CAMERA_FACING_BACK;

@@ -1,4 +1,4 @@
-package com.darryncampbell.genericscanwedge.genericscanwedge;
+package eu.heychris.genericscanwedge.android;
 
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -6,14 +6,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.darryncampbell.genericscanwedge.genericscanwedge.R;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
-import com.darryncampbell.genericscanwedge.genericscanwedge.GoogleVisionBarcode.BarcodeCaptureActivity;
+import eu.heychris.genericscanwedge.android.GoogleVisionBarcode.BarcodeCaptureActivity;
 
 import java.util.List;
 
@@ -38,9 +40,9 @@ public class GoogleVisionBarcodeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_hiddenactivity);
 
         activeProfile = (Profile) getIntent().getSerializableExtra("activeProfile");
-        Intent intent = new Intent(this, com.darryncampbell.genericscanwedge.genericscanwedge.GoogleVisionBarcode.BarcodeCaptureActivity.class);
-        intent.putExtra(com.darryncampbell.genericscanwedge.genericscanwedge.GoogleVisionBarcode.BarcodeCaptureActivity.AutoFocus, true);
-        intent.putExtra(com.darryncampbell.genericscanwedge.genericscanwedge.GoogleVisionBarcode.BarcodeCaptureActivity.UseFlash, true);
+        Intent intent = new Intent(this, BarcodeCaptureActivity.class);
+        intent.putExtra(BarcodeCaptureActivity.AutoFocus, true);
+        intent.putExtra(BarcodeCaptureActivity.UseFlash, true);
         //  Added on top of the Google Barcode sample, supported decoders are flags.
         intent.putExtra("formats", giveSupportedDecoders());
         startActivityForResult(intent, RC_BARCODE_CAPTURE);
