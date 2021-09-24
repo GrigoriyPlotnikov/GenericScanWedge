@@ -8,16 +8,16 @@
     android:layout_height="match_parent"
     android:keepScreenOn="true">
 
-    <eu.heychris.genericscanwedge.android.GoogleVisionBarcode.ui.camera.CameraSourcePreview
+    <GoogleVisionBarcode.ui.camera.CameraSourcePreview
         android:id="@+id/preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <eu.heychris.genericscanwedge.android.GoogleVisionBarcode.ui.camera.GraphicOverlay
+        <GoogleVisionBarcode.ui.camera.GraphicOverlay
             android:id="@+id/graphicOverlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </eu.heychris.genericscanwedge.android.GoogleVisionBarcode.ui.camera.CameraSourcePreview>
+    </GoogleVisionBarcode.ui.camera.CameraSourcePreview>
 
 </LinearLayout>

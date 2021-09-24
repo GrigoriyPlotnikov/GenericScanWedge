@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package eu.heychris.genericscanwedge.android.GoogleVisionBarcode;
+package com.darryncampbell.genericscanwedge.android.googleVisionBarcode;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -24,7 +24,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -38,10 +37,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import eu.heychris.genericscanwedge.android.GoogleVisionBarcode.ui.camera.CameraSource;
-import eu.heychris.genericscanwedge.android.GoogleVisionBarcode.ui.camera.CameraSourcePreview;
-import eu.heychris.genericscanwedge.android.GoogleVisionBarcode.ui.camera.GraphicOverlay;
-import com.darryncampbell.genericscanwedge.genericscanwedge.R;
+import com.darryncampbell.genericscanwedge.android.googleVisionBarcode.ui.camera.CameraSource;
+import com.darryncampbell.genericscanwedge.android.googleVisionBarcode.ui.camera.CameraSourcePreview;
+import com.darryncampbell.genericscanwedge.android.googleVisionBarcode.ui.camera.GraphicOverlay;
+import com.darryncampbell.genericscanwedge.android.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.CommonStatusCodes;
@@ -88,8 +87,8 @@ public final class BarcodeCaptureActivity extends AppCompatActivity {
         super.onCreate(icicle);
         setContentView(R.layout.barcode_capture);
 
-        mPreview = (CameraSourcePreview) findViewById(R.id.preview);
-        mGraphicOverlay = (GraphicOverlay<BarcodeGraphic>) findViewById(R.id.graphicOverlay);
+        mPreview = findViewById(R.id.preview);
+        mGraphicOverlay = findViewById(R.id.graphicOverlay);
 
         // read parameters from the intent used to launch the activity.
         boolean autoFocus = getIntent().getBooleanExtra(AutoFocus, false);
@@ -132,8 +131,13 @@ public final class BarcodeCaptureActivity extends AppCompatActivity {
 
         final AppCompatActivity thisActivity = this;
 
-        View.OnClickListener listener = view -> ActivityCompat.requestPermissions(thisActivity, permissions,
-                RC_HANDLE_CAMERA_PERM);
+        View.OnClickListener listener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ActivityCompat.requestPermissions(thisActivity, permissions,
+                        RC_HANDLE_CAMERA_PERM);
+            }
+        };
 
         Snackbar.make(mGraphicOverlay, R.string.permission_camera_rationale,
                 Snackbar.LENGTH_INDEFINITE)
@@ -201,13 +205,9 @@ public final class BarcodeCaptureActivity extends AppCompatActivity {
         CameraSource.Builder builder = new CameraSource.Builder(getApplicationContext(), barcodeDetector)
                 .setFacing(CameraSource.CAMERA_FACING_BACK)
                 .setRequestedPreviewSize(1600, 1024)
-                .setRequestedFps(15.0f);
-
-        // make sure that auto focus is an available option
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            builder = builder.setFocusMode(
-                    autoFocus ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE : null);
-        }
+                .setRequestedFps(15.0f)
+                .setFocusMode(
+                autoFocus ? Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE : null);
 
         mCameraSource = builder
                 .setFlashMode(useFlash ? Camera.Parameters.FLASH_MODE_TORCH : null)
@@ -284,7 +284,11 @@ public final class BarcodeCaptureActivity extends AppCompatActivity {
         Log.e(TAG, "Permission not granted: results len = " + grantResults.length +
                 " Result code = " + (grantResults.length > 0 ? grantResults[0] : "(empty)"));
 
-        DialogInterface.OnClickListener listener = (dialog, id) -> finish();
+        DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                finish();
+            }
+        };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Multitracker sample")
@@ -305,7 +309,8 @@ public final class BarcodeCaptureActivity extends AppCompatActivity {
         if (code != ConnectionResult.SUCCESS) {
             Dialog dlg =
                     GoogleApiAvailability.getInstance().getErrorDialog(this, code, RC_HANDLE_GMS);
-            dlg.show();
+            if(dlg != null)
+                dlg.show();
         }
 
         if (mCameraSource != null) {

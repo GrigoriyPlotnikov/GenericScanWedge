@@ -1,75 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.darryncampbell.genericscanwedge.genericscanwedge">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.darryncampbell.genericscanwedge.android">
 
     <uses-feature android:name="android.hardware.camera" />
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
-        <service
-            android:name="eu.heychris.genericscanwedge.android.GenericScanWedgeService"
+        android:theme="@style/AppTheme.NoActionBar"
+        tools:ignore="GoogleAppIndexingWarning">
+
+        <activity android:name=".CaptureActivityPortrait"
+            android:screenOrientation="sensorPortrait"
+            android:stateNotNeeded="true"
+            android:theme="@style/zxing_CaptureTheme"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
+
+        <service android:name=".GenericScanWedgeService"
             android:enabled="true"
             android:exported="true" />
 
-        <receiver
-            android:name="eu.heychris.genericscanwedge.android.GenericScanWedgeIntentReceiver"
+        <receiver android:name=".GenericScanWedgeIntentReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.symbol.datawedge.api.ACTION_SOFTSCANTRIGGER" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.symbol.datawedge.api.ACTION_SCANNERINPUTPLUGIN" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.symbol.datawedge.api.ACTION_ENUMERATESCANNERS" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.symbol.datawedge.api.ACTION_SETDEFAULTPROFILE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.symbol.datawedge.api.ACTION_RESETDEFAULTPROFILE" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.symbol.datawedge.api.ACTION_SWITCHTOPROFILE" />
+                <action android:name="com.symbol.datawedge.api.ACTION" />
             </intent-filter>
         </receiver>
 
-        <activity android:name="eu.heychris.genericscanwedge.android.ZxingActivity" />
-        <activity android:name="eu.heychris.genericscanwedge.android.GoogleVisionBarcodeActivity" />
-        <activity
-            android:name="eu.heychris.genericscanwedge.android.GoogleVisionBarcode.BarcodeCaptureActivity"
+        <activity android:name=".ZXingActivity" />
+        <activity android:name=".GoogleVisionBarcodeActivity" />
+        <activity android:name=".googleVisionBarcode.BarcodeCaptureActivity"
             android:label="Read Barcode" />
-        <activity
-            android:name="eu.heychris.genericscanwedge.android.MainActivity"
+        <activity android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="eu.heychris.genericscanwedge.android.ProfileConfiguration"
+
+        <activity android:name=".ProfileConfiguration"
             android:label="@string/title_activity_profile_configuration"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name="eu.heychris.genericscanwedge.android.DeviceListActivity"
+        <activity android:name=".DeviceListActivity"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/select_device"
             android:theme="@android:style/Theme.DeviceDefault.Dialog" />
 
-        <service
-            android:name="eu.heychris.genericscanwedge.android.BluetoothConnectionService"
+        <service android:name=".BluetoothConnectionService"
             android:exported="false" />
     </application>
 

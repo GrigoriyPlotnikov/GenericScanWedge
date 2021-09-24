@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package eu.heychris.genericscanwedge.android;
+package com.darryncampbell.genericscanwedge.android;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -387,7 +387,7 @@ public class BluetoothChatService {
         }
     }
 
-    public interface Constants {
+    public class Constants {
 
         // Message types sent from the BluetoothChatService Handler
         public static final int MESSAGE_STATE_CHANGE = 1;

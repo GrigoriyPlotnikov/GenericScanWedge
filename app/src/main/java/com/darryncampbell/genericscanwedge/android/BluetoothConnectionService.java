@@ -1,4 +1,4 @@
-package eu.heychris.genericscanwedge.android;
+package com.darryncampbell.genericscanwedge.android;
 
 import android.app.IntentService;
 import android.bluetooth.BluetoothAdapter;
@@ -119,7 +119,7 @@ public class BluetoothConnectionService extends NonStopIntentService {
         else if (activeProfile.getIntentDelivery() == Profile.IntentDelivery.INTENT_DELIVERY_START_SERVICE)
         {
             try {
-                startService(ZxingActivity.createExplicitFromImplicitIntent(getApplicationContext(), barcodeIntent));
+                startService(ZXingActivity.createExplicitFromImplicitIntent(getApplicationContext(), barcodeIntent));
             }
             catch (Exception e)
             {
@@ -137,9 +137,12 @@ public class BluetoothConnectionService extends NonStopIntentService {
     public void ShowToastInIntentService(final String sText) {
         final Context MyContext = this;
 
-        new Handler(Looper.getMainLooper()).post(() -> {
-            Toast toast1 = Toast.makeText(MyContext, sText, Toast.LENGTH_SHORT);
-            toast1.show();
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                Toast toast1 = Toast.makeText(MyContext, sText, Toast.LENGTH_SHORT);
+                toast1.show();
+            }
         });
-    };
+    }
 }

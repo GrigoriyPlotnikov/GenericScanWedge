@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package eu.heychris.genericscanwedge.android.GoogleVisionBarcode;
+package com.darryncampbell.genericscanwedge.android.googleVisionBarcode;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-import eu.heychris.genericscanwedge.android.GoogleVisionBarcode.ui.camera.GraphicOverlay;
+import com.darryncampbell.genericscanwedge.android.googleVisionBarcode.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.barcode.Barcode;
 
 /**
@@ -31,7 +31,7 @@ public class BarcodeGraphic extends GraphicOverlay.Graphic {
 
     private int mId;
 
-    private static final int COLOR_CHOICES[] = {
+    private static final int[] COLOR_CHOICES = {
             Color.BLUE,
             Color.CYAN,
             Color.GREEN

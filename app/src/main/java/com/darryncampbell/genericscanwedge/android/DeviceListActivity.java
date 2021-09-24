@@ -15,7 +15,7 @@
  */
 
 //  USED WITHOUT MODIFICATION EXCEPTING THE PACKAGE NAME UNDER THE TERMS OF THE APACHE LICENSE
-package eu.heychris.genericscanwedge.android;
+package com.darryncampbell.genericscanwedge.android;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -36,7 +36,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.darryncampbell.genericscanwedge.genericscanwedge.R;
 
 import java.util.Set;
 
@@ -81,16 +80,18 @@ public class DeviceListActivity extends AppCompatActivity {
 
         // Initialize the button to perform device discovery
         Button scanButton = (Button) findViewById(R.id.button_scan);
-        scanButton.setOnClickListener(v -> {
-            doDiscovery();
-            v.setVisibility(View.GONE);
+        scanButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                doDiscovery();
+                v.setVisibility(View.GONE);
+            }
         });
 
         // Initialize array adapters. One for already paired devices and
         // one for newly discovered devices
         ArrayAdapter<String> pairedDevicesArrayAdapter =
-                new ArrayAdapter<>(this, R.layout.device_name);
-        mNewDevicesArrayAdapter = new ArrayAdapter<>(this, R.layout.device_name);
+                new ArrayAdapter<String>(this, R.layout.device_name);
+        mNewDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.device_name);
 
         // Find and set up the ListView for paired devices
         ListView pairedListView = (ListView) findViewById(R.id.paired_devices);

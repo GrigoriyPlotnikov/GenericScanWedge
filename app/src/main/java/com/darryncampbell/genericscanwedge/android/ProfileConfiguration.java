@@ -1,4 +1,4 @@
-package eu.heychris.genericscanwedge.android;
+package com.darryncampbell.genericscanwedge.android;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
@@ -16,10 +16,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import com.darryncampbell.genericscanwedge.genericscanwedge.R;
 
 import java.util.ArrayList;
 
@@ -36,6 +38,7 @@ public class ProfileConfiguration extends AppCompatActivity implements CompoundB
     static final String LOG_TAG = "Generic Scan Wedge";
     int creating = 0;
     static String lastConnectedMacAddress = null;
+    private ActivityResultLauncher<Intent> bluetoothDeviceListResultLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,40 @@ public class ProfileConfiguration extends AppCompatActivity implements CompoundB
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter == null)
             Toast.makeText(this, "Bluetooth is not available", Toast.LENGTH_LONG).show();
+        
+        bluetoothDeviceListResultLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                new ActivityResultCallback<ActivityResult>() {
+                    @Override
+                    public void onActivityResult(ActivityResult result) {
+                        // When DeviceListActivity returns with a device to connect
+                        if (result.getResultCode() != AppCompatActivity.RESULT_OK) {
+                            return;
+                        }
+                        //  Find the active profile
+                        Profile activeProfile = null;
+                        for (int i = 0; i < profiles.size(); i++) {
+                            if (profiles.get(i).getProfileEnabled()) {
+                                activeProfile = profiles.get(i);
+                                break;
+                            }
+                        }
+
+                        // Get the device MAC address
+                        String address = result.getData().getExtras()
+                                .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
+                        lastConnectedMacAddress = address;
+
+                        Intent bluetoothConnectionConnectIntent = new Intent(getBaseContext(), BluetoothConnectionService.class);
+                        bluetoothConnectionConnectIntent.setAction(BluetoothConnectionService.ACTION_CONNECT);
+                        bluetoothConnectionConnectIntent.putExtra("macAddress", address);
+                        bluetoothConnectionConnectIntent.putExtra("activeProfile", activeProfile);
+                        startService(bluetoothConnectionConnectIntent);
+
+                    }
+                }
+        );
+        
         profiles = (ArrayList<Profile>)getIntent().getSerializableExtra("profileObjects");
         position = getIntent().getIntExtra("profilePosition", 0);
         Profile profile = profiles.get(position);
@@ -60,10 +97,13 @@ public class ProfileConfiguration extends AppCompatActivity implements CompoundB
 
         //  For each control, set the current value and add an event listener to process changes.
         final Button button = (Button) findViewById(R.id.btnAdminDeleteProfile);
-        button.setOnClickListener(v -> {
-            profiles.remove(position);
-            MainActivity.saveProfiles(profiles, getApplicationContext());
-            finish();
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                profiles.remove(position);
+                MainActivity.saveProfiles(profiles, getApplicationContext());
+                finish();
+            }
         });
 
         EditText editTextProfileName = (EditText) findViewById(R.id.editProfileName);
@@ -288,49 +328,21 @@ public class ProfileConfiguration extends AppCompatActivity implements CompoundB
         else
         {
             Intent serverIntent = new Intent(this, DeviceListActivity.class);
-            startActivityForResult(serverIntent, REQUEST_CONNECT_DEVICE);
+            bluetoothDeviceListResultLauncher.launch(serverIntent);
         }
     }
 
     private void bluetoothDisconnectScanner() {
+        if (mBluetoothAdapter == null) {
+            Toast.makeText(this, "Bluetooth is not available", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         //  Disconnect the connected bluetooth scanner if there is one
         Intent bluetoothConnectionDisconnectIntent = new Intent(this, BluetoothConnectionService.class);
         bluetoothConnectionDisconnectIntent.setAction(BluetoothConnectionService.ACTION_DISCONNECT);
         startService(bluetoothConnectionDisconnectIntent);
     }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case REQUEST_CONNECT_DEVICE:
-                // When DeviceListActivity returns with a device to connect
-                if (resultCode == AppCompatActivity.RESULT_OK) {
-                    //  Find the active profile
-                    Profile activeProfile = null;
-                    for (int i = 0; i < profiles.size(); i++) {
-                        if (profiles.get(i).getProfileEnabled()) {
-                            activeProfile = profiles.get(i);
-                            break;
-                        }
-                    }
-
-                    // Get the device MAC address
-                    String address = data.getExtras()
-                            .getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
-                    lastConnectedMacAddress = address;
-
-                    Intent bluetoothConnectionConnectIntent = new Intent(this, BluetoothConnectionService.class);
-                    bluetoothConnectionConnectIntent.setAction(BluetoothConnectionService.ACTION_CONNECT);
-                    bluetoothConnectionConnectIntent.putExtra("macAddress", address);
-                    bluetoothConnectionConnectIntent.putExtra("activeProfile", activeProfile);
-                    startService(bluetoothConnectionConnectIntent);
-
-                }
-                break;
-        }
-    }
-
 
     //  The receiver foreground flag checkbox and UI should only be shown if the user has selected sendBroadcast()
     private void disableReceiverForegroundFlagUI()

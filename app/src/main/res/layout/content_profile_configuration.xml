@@ -1,794 +1,661 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="eu.heychris.genericscanwedge.android.ProfileConfiguration"
-    tools:showIn="@layout/activity_profile_configuration"
     android:descendantFocusability="beforeDescendants"
-    android:focusableInTouchMode="true">
+    android:focusableInTouchMode="true"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.darryncampbell.genericscanwedge.android.ProfileConfiguration"
+    tools:showIn="@layout/activity_profile_configuration">
 
-    <ScrollView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/scrollView" >
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="true"
+        android:orientation="vertical"
+        android:useDefaultMargins="true">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TableLayout
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="6dp">
+            <TextView
+                android:id="@+id/txtProfileName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profile Name"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+            <EditText
+                android:id="@+id/editProfileName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:stretchColumns="1">
+                android:text=""
 
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
+                />
+        </LinearLayout>
 
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_span="2">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="Profile Name"
-                            android:id="@+id/txtProfileName" />
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/editProfileName"
-                            android:text=""
-
-                            />
-                    </LinearLayout>
-
-
-                </TableRow>
-
-                <TableRow
+                <TextView
+                    android:id="@+id/txtProfileEnabled"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="Profile Enabled"
-                            android:id="@+id/txtProfileEnabled" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="Enable / disable this profile"
-                            android:id="@+id/txtProfileEnabledHelp" />
-                    </LinearLayout>
-
-                    <CheckBox
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkProfileEnabled"
-                        android:layout_gravity="center_vertical|right" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Scanning Engine"
-                        android:id="@+id/txtConfigureProfileScanningEngine" />
-
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spinnerScaningEngine"
-                        android:entries="@array/scanning_engines"
-                        android:paddingRight="10dp" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="BARCODE INPUT"
-                        android:background="@drawable/text_underline"
-                        android:id="@+id/headingBarcodeInput"
-                        android:layout_span="2" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="Enabled"
-                            android:id="@+id/txtConfigureProfileBarcodeEnabled" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="Enable / disable scanner input"
-                            android:id="@+id/txtConfigureprofileBarcodeEnabledHelp" />
-                    </LinearLayout>
-
-
-                    <CheckBox
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkConfigureProfileBarcodeEnabled"
-                        android:layout_gravity="center_vertical|right"
-                        android:checked="true" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="UPCA"
-                            android:id="@+id/txtConfigureProfileBarcodeUPCA" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="Enable / disable decoder"
-                            android:id="@+id/txtConfigureprofileBarcodeUPCAHelp" />
-                    </LinearLayout>
-
-
-                    <CheckBox
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkConfigureProfileBarcodeUPCA"
-                        android:layout_gravity="center_vertical|right"
-                        android:checked="true" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="UPCE"
-                            android:id="@+id/txtConfigureProfileBarcodeUPCE" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="Enable / disable decoder"
-                            android:id="@+id/txtConfigureprofileBarcodeUPCEHelp" />
-                    </LinearLayout>
-
-
-                    <CheckBox
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkConfigureProfileBarcodeUPCE"
-                        android:layout_gravity="center_vertical|right"
-                        android:checked="true" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="EAN8"
-                            android:id="@+id/txtConfigureProfileBarcodeEan8" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="Enable / disable decoder"
-                            android:id="@+id/txtConfigureprofileBarcodeEAN8Help" />
-                    </LinearLayout>
-
-
-                    <CheckBox
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkConfigureProfileBarcodeEan8"
-                        android:layout_gravity="center_vertical|right"
-                        android:checked="true" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="EAN13"
-                            android:id="@+id/txtConfigureProfileBarcodeEan13" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="Enable / disable decoder"
-                            android:id="@+id/txtConfigureprofileBarcodeEan13Help" />
-                    </LinearLayout>
-
-
-                    <CheckBox
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkConfigureProfileBarcodeEan13"
-                        android:layout_gravity="center_vertical|right"
-                        android:checked="true" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="RSS14"
-                            android:id="@+id/txtConfigureProfileBarcodeRSS14" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="Enable / disable decoder"
-                            android:id="@+id/txtConfigureprofileBarcodeRSS14Help" />
-                    </LinearLayout>
-
-
-                    <CheckBox
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkConfigureProfileBarcodeRSS14"
-                        android:layout_gravity="center_vertical|right"
-                        android:checked="true" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="CODE 39"
-                            android:id="@+id/txtConfigureProfileBarcodeCode39" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="Enable / disable decoder"
-                            android:id="@+id/txtConfigureprofileBarcodeCode39Help" />
-                    </LinearLayout>
-
-
-                    <CheckBox
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkConfigureProfileBarcodeCode39"
-                        android:layout_gravity="center_vertical|right"
-                        android:checked="true" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="CODE 93"
-                            android:id="@+id/txtConfigureProfileBarcodeCode93" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="Enable / disable decoder"
-                            android:id="@+id/txtConfigureprofileBarcodeCode93Help" />
-                    </LinearLayout>
-
-
-                    <CheckBox
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkConfigureProfileBarcodeCode93"
-                        android:layout_gravity="center_vertical|right"
-                        android:checked="true" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="CODE 128"
-                            android:id="@+id/txtConfigureProfileBarcodeCode128" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="Enable / disable decoder"
-                            android:id="@+id/txtConfigureprofileBarcodeCode128Help" />
-                    </LinearLayout>
-
-
-                    <CheckBox
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkConfigureProfileBarcodeCode128"
-                        android:layout_gravity="center_vertical|right"
-                        android:checked="true" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="ITF"
-                            android:id="@+id/txtConfigureProfileBarcodeITF" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="Enable / disable decoder"
-                            android:id="@+id/txtConfigureprofileBarcodeITFHelp" />
-                    </LinearLayout>
-
-
-                    <CheckBox
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkConfigureProfileBarcodeITF"
-                        android:layout_gravity="center_vertical|right"
-                        android:checked="true" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="RSS Expanded"
-                            android:id="@+id/txtConfigureProfileBarcodeRSSExpanded" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="Enable / disable decoder"
-                            android:id="@+id/txtConfigureprofileBarcodeRSSExpandedHelp" />
-                    </LinearLayout>
-
-
-                    <CheckBox
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkConfigureProfileBarcodeRSSExpanded"
-                        android:layout_gravity="center_vertical|right"
-                        android:checked="true" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="QR CODE"
-                            android:id="@+id/txtConfigureProfileBarcodeQRCode" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="Enable / disable decoder"
-                            android:id="@+id/txtConfigureprofileBarcodeQRCodeHelp" />
-                    </LinearLayout>
-
-
-                    <CheckBox
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkConfigureProfileBarcodeQRCode"
-                        android:layout_gravity="center_vertical|right"
-                        android:checked="true" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="Data Matrix"
-                            android:id="@+id/txtConfigureProfileBarcodeDataMatrix" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="Enable / disable decoder"
-                            android:id="@+id/txtConfigureprofileBarcodeDataMatrixHelp" />
-                    </LinearLayout>
-
-
-                    <CheckBox
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkConfigureProfileBarcodeDataMatrix"
-                        android:layout_gravity="center_vertical|right"
-                        android:checked="true" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="INTENT OUTPUT"
-                        android:background="@drawable/text_underline"
-                        android:id="@+id/headingIntentOutput"
-                        android:layout_span="2" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_span="2">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="Action"
-                            android:id="@+id/textView5" />
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/editIntentAction"
-                            android:text=""
-                            />
-                    </LinearLayout>
-
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_span="2">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="Category"
-                            android:id="@+id/textIntentOutputCategory" />
-
-                        <EditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/editIntentCategory"
-                            android:text=""
-                            />
-                    </LinearLayout>
-
-
-                </TableRow>
-
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Intent Delivery"
-                        android:id="@+id/txtConfigureProfileIntentDelivery" />
-
-                    <Spinner
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/spinnerIntentOutputMechanism"
-                        android:entries="@array/intent_output_mechanism"
-                        android:paddingRight="10dp" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:layout_width="fill_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceLarge"
-                            android:text="Foreground flag"
-                            android:id="@+id/txtConfigureReceiveForegroundFlag"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?android:attr/textAppearanceSmall"
-                            android:text="Set receiver foreground flag"
-                            android:id="@+id/txtConfigureReceiveForegroundFlagHelp"
-                            />
-                    </LinearLayout>
-
-
-                    <CheckBox
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/checkConfigureReceiveForegroundFlag"
-                        android:layout_gravity="center_vertical|right"
-                        android:checked="true" />
-
-                </TableRow>
-
-
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:text="ADMINISTRATION"
-                        android:background="@drawable/text_underline"
-                        android:id="@+id/headingAdministration"
-                        android:layout_span="2" />
-
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text=""
-                        android:id="@+id/txtAdminDeleteProfile" />
-
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Delete Profile"
-                        android:id="@+id/btnAdminDeleteProfile"
-                        android:background="@color/zebraBlue"
-                        android:textColor="@color/zebraWhite"
-                        android:paddingRight="10dp" />
-
-                </TableRow>
-
-
-            </TableLayout>
-
-
-
+                    android:text="Profile Enabled"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/txtProfileEnabledHelp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enable / disable this profile"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
+            <CheckBox
+                android:id="@+id/checkProfileEnabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
-    </ScrollView>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp">
+            <TextView
+                android:id="@+id/txtConfigureProfileScanningEngine"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Scanning Engine"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+            <Spinner
+                android:id="@+id/spinnerScaningEngine"
+                android:layout_width="183dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/scanning_engines"
+                android:gravity="right" />
+        </LinearLayout>
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/headingBarcodeInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/text_underline"
+            android:paddingBottom="6dp"
+            android:text="BARCODE INPUT"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtConfigureProfileBarcodeEnabled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enabled"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/txtConfigureprofileBarcodeEnabledHelp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enable / disable scanner input"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
+            <CheckBox
+                android:id="@+id/checkConfigureProfileBarcodeEnabled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/txtConfigureProfileBarcodeUPCA"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="UPCA"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                <TextView
+                    android:id="@+id/txtConfigureprofileBarcodeUPCAHelp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enable / disable decoder"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
+            <CheckBox
+                android:id="@+id/checkConfigureProfileBarcodeUPCA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="6"
+                android:layout_gravity="center_vertical|right"
+                android:checked="true" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtConfigureProfileBarcodeUPCE"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="UPCE"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <TextView
+                        android:id="@+id/txtConfigureprofileBarcodeUPCEHelp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Enable / disable decoder"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
+            <CheckBox
+                android:id="@+id/checkConfigureProfileBarcodeUPCE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtConfigureProfileBarcodeEan8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EAN8"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/txtConfigureprofileBarcodeEAN8Help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enable / disable decoder"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
+            <CheckBox
+                android:id="@+id/checkConfigureProfileBarcodeEan8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="8"
+                android:layout_gravity="center_vertical|right"
+                android:checked="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtConfigureProfileBarcodeEan13"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="EAN13"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/txtConfigureprofileBarcodeEan13Help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enable / disable decoder"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
+            <CheckBox
+                android:id="@+id/checkConfigureProfileBarcodeEan13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="9"
+                android:layout_gravity="center_vertical|right"
+                android:checked="true" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtConfigureProfileBarcodeRSS14"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="RSS14"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/txtConfigureprofileBarcodeRSS14Help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enable / disable decoder"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
+            <CheckBox
+                android:id="@+id/checkConfigureProfileBarcodeRSS14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="10"
+                android:layout_gravity="center_vertical|right"
+                android:checked="true" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtConfigureProfileBarcodeCode39"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CODE 39"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/txtConfigureprofileBarcodeCode39Help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enable / disable decoder"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
+            <CheckBox
+                android:id="@+id/checkConfigureProfileBarcodeCode39"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="11"
+                android:layout_gravity="center_vertical|right"
+                android:checked="true" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtConfigureProfileBarcodeCode93"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CODE 93"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/txtConfigureprofileBarcodeCode93Help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enable / disable decoder"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
+            <CheckBox
+                android:id="@+id/checkConfigureProfileBarcodeCode93"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="12"
+                android:layout_gravity="center_vertical|right"
+                android:checked="true" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtConfigureProfileBarcodeCode128"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="CODE 128"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/txtConfigureprofileBarcodeCode128Help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enable / disable decoder"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
+            <CheckBox
+                android:id="@+id/checkConfigureProfileBarcodeCode128"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="13"
+                android:layout_gravity="center_vertical|right"
+                android:checked="true" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtConfigureProfileBarcodeITF"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="ITF"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/txtConfigureprofileBarcodeITFHelp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enable / disable decoder"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
+            <CheckBox
+                android:id="@+id/checkConfigureProfileBarcodeITF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="14"
+                android:layout_gravity="center_vertical|right"
+                android:checked="true" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtConfigureProfileBarcodeRSSExpanded"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="RSS Expanded"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/txtConfigureprofileBarcodeRSSExpandedHelp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enable / disable decoder"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
+            <CheckBox
+                android:id="@+id/checkConfigureProfileBarcodeRSSExpanded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtConfigureProfileBarcodeQRCode"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="QR CODE"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/txtConfigureprofileBarcodeQRCodeHelp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enable / disable decoder"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
+            <CheckBox
+                android:id="@+id/checkConfigureProfileBarcodeQRCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="16"
+                android:layout_gravity="center_vertical|right"
+                android:checked="true" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtConfigureProfileBarcodeDataMatrix"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Data Matrix"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/txtConfigureprofileBarcodeDataMatrixHelp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enable / disable decoder"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
+            <CheckBox
+                android:id="@+id/checkConfigureProfileBarcodeDataMatrix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="17"
+                android:layout_gravity="center_vertical|right"
+                android:checked="true" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/headingIntentOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_row="18"
+            android:layout_columnSpan="2"
+            android:background="@drawable/text_underline"
+            android:text="INTENT OUTPUT"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Action"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <EditText
+                android:id="@+id/editIntentAction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textIntentOutputCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <EditText
+                android:id="@+id/editIntentCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp">
+            <TextView
+                android:id="@+id/txtConfigureProfileIntentDelivery"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Intent Delivery"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+            <Spinner
+                android:id="@+id/spinnerIntentOutputMechanism"
+                android:layout_width="186dp"
+                android:layout_height="wrap_content"
+                android:entries="@array/intent_output_mechanism"
+                android:paddingRight="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtConfigureReceiveForegroundFlag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Foreground flag"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
+                    android:id="@+id/txtConfigureReceiveForegroundFlagHelp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Set receiver foreground flag"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </LinearLayout>
+            <CheckBox
+                android:id="@+id/checkConfigureReceiveForegroundFlag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="23"
+                android:layout_gravity="center_vertical|right"
+                android:checked="true" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/headingAdministration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_row="24"
+            android:layout_columnSpan="2"
+            android:background="@drawable/text_underline"
+            android:text="ADMINISTRATION"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="6dp">
+
+            <TextView
+                android:id="@+id/txtAdminDeleteProfile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text=""
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <Button
+                android:id="@+id/btnAdminDeleteProfile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/zebraBlue"
+                android:text="Delete Profile"
+                android:textColor="@color/zebraWhite" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+

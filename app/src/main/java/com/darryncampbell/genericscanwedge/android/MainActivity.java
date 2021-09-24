@@ -1,15 +1,17 @@
-package eu.heychris.genericscanwedge.android;
+package com.darryncampbell.genericscanwedge.android;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
-;
+
 import android.util.Log;
+import android.view.View;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.darryncampbell.genericscanwedge.genericscanwedge.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.io.FileInputStream;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     static final String LOG_TAG = "Generic Scan Wedge";
     private ArrayList<Profile> profiles = new ArrayList<>();
     private ProfilesListAdapter profilesListAdapter;
+    private GenericScanWedgeIntentReceiver broadcastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +44,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(view -> {
-            profilesListAdapter.add(new Profile("New Profile", false));
-            profilesListAdapter.notifyDataSetChanged();
-            saveProfiles(profiles, getApplicationContext());
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public  void onClick(View view) {
+                profilesListAdapter.add(new Profile("New Profile", false));
+                profilesListAdapter.notifyDataSetChanged();
+                saveProfiles(profiles, getApplicationContext());
+            }
         });
+
+        broadcastReceiver = new GenericScanWedgeIntentReceiver();
+        IntentFilter f = new IntentFilter(Datawedge.ACTION);
+        registerReceiver(broadcastReceiver, f);
     }
 
     @Override
@@ -78,6 +88,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(broadcastReceiver);
+    }
+
     //  Save the configured profiles to disk to persist.  This could be changed to the storage card
     //  or some other location later if we want.
     public static void saveProfiles(ArrayList<Profile> profiles, Context context)
@@ -103,5 +119,10 @@ public class MainActivity extends AppCompatActivity {
         is.close();
         fis.close();
         return profiles;
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
     }
 }

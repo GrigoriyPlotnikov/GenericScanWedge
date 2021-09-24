@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package eu.heychris.genericscanwedge.android.GoogleVisionBarcode;
+package com.darryncampbell.genericscanwedge.android.googleVisionBarcode;
 
-import eu.heychris.genericscanwedge.android.GoogleVisionBarcode.ui.camera.GraphicOverlay;
+import com.darryncampbell.genericscanwedge.android.googleVisionBarcode.ui.camera.GraphicOverlay;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.Tracker;
 import com.google.android.gms.vision.barcode.Barcode;

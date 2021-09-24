@@ -1,4 +1,4 @@
-package eu.heychris.genericscanwedge.android;
+package com.darryncampbell.genericscanwedge.android;
 
 import java.io.Serializable;
 import java.util.HashMap;

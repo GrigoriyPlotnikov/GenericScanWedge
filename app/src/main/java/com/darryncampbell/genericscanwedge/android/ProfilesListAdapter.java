@@ -1,4 +1,4 @@
-package eu.heychris.genericscanwedge.android;
+package com.darryncampbell.genericscanwedge.android;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-
-import com.darryncampbell.genericscanwedge.genericscanwedge.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;

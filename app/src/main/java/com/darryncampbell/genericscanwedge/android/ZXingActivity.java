@@ -1,4 +1,4 @@
-package eu.heychris.genericscanwedge.android;
+package com.darryncampbell.genericscanwedge.android;
 
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.darryncampbell.genericscanwedge.genericscanwedge.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -21,7 +20,7 @@ import java.util.List;
 
 //  Activity to encapsulate initiating a barcode scan using the ZXing library.  This needs to be
 //  its own activity as that is what the ZXing interface needs.
-public class ZxingActivity extends AppCompatActivity {
+public class ZXingActivity extends AppCompatActivity {
 
     private Profile activeProfile;
     static final String LOG_TAG = "Generic Scan Wedge";
@@ -36,6 +35,8 @@ public class ZxingActivity extends AppCompatActivity {
 
         //  Launching Zebra Crossing
         IntentIntegrator integrator = new IntentIntegrator(this);
+        integrator.setCaptureActivity(CaptureActivityPortrait.class);
+        integrator.setOrientationLocked(true);
         //  Specify the enabled decoders in ZXing (based on the active profile)
         ArrayList<String> desiredDecoders = new ArrayList<>();
         if (activeProfile.isDecoderEnabled(Profile.DECODER_UPCA))

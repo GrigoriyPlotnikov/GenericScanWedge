@@ -1,4 +1,4 @@
-package eu.heychris.genericscanwedge.android;
+package com.darryncampbell.genericscanwedge.android;
 
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
@@ -12,16 +12,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.darryncampbell.genericscanwedge.genericscanwedge.R;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.barcode.Barcode;
-import eu.heychris.genericscanwedge.android.GoogleVisionBarcode.BarcodeCaptureActivity;
+import com.darryncampbell.genericscanwedge.android.googleVisionBarcode.BarcodeCaptureActivity;
 
 import java.util.List;
 
 //  This class enables the Google Barcode API to be called from the DataWedge lite service.  I have
 //  just copy / pasted the Google Vision example for Barcode which seems a bit buggy on my phone but
-//  gets the job done.  All the Google Barcode specific stuff is stored under /GoogleVisionBarcode
+//  gets the job done.  All the Google Barcode specific stuff is stored under /googleVisionBarcode
 //  and only differs from the Google sample by me changing the package name and adding the requested
 //  decoder formats.
 //  https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/Barcode
