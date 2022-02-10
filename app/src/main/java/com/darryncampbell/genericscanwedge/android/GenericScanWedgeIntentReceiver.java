@@ -25,6 +25,9 @@ public class GenericScanWedgeIntentReceiver extends BroadcastReceiver {
                 Build.MANUFACTURER.equalsIgnoreCase("Motorola Solutions"))
             return;
 
+        if (intent.hasCategory(Intent.CATEGORY_DEFAULT))
+            return;
+
         try {
             //  Read the configured profiles and launch the GenericScanWedgeService to handle
             //  whatever it is the caller wants to do

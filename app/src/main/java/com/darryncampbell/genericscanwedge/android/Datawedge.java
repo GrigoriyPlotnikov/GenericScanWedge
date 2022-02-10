@@ -52,5 +52,28 @@ public final class Datawedge {
     //---------------------------------------------------------------------------
     public static final String GET_PROFILES_LIST = "com.symbol.datawedge.api.GET_PROFILES_LIST";
     public static final String RESULT_GET_PROFILES_LIST = "com.symbol.datawedge.api.RESULT_GET_PROFILES_LIST";
+
+    public static final String SOURCE = "com.symbol.datawedge.source";
+    public static final String LABEL_TYPE = "com.symbol.datawedge.label_type";
+    public static final String DATA_STRING = "com.symbol.datawedge.data_string";
+
+    public static final String GET_ACTIVE_PROFILE = "com.symbol.datawedge.api.GET_ACTIVE_PROFILE";
+    public static final String RESULT_GET_ACTIVE_PROFILE = "com.symbol.datawedge.api.RESULT_GET_ACTIVE_PROFILE";
+
+    public static final String REGISTER_NOTIFICATION = "com.symbol.datawedge.api.REGISTER_FOR_NOTIFICATION";
+    public static final String UNREGISTER_NOTIFICATION = "com.symbol.datawedge.api.UNREGISTER_FOR_NOTIFICATION";
+    public static final String KEY_APPLICATION_NAME = "com.symbol.datawedge.api.APPLICATION_NAME";
+    public static final String KEY_NOTIFICATION_TYPE = "com.symbol.datawedge.api.NOTIFICATION_TYPE";
+    /*  */public static final String SCANNER_STATUS = "SCANNER_STATUS";
+    /*  */public static final String PROFILE_SWITCH = "PROFILE_SWITCH";
+    /*  */public static final String CONFIGURATION_UPDATE = "CONFIGURATION_UPDATE";
+
+    public static final String GET_VERSION_INFO = "com.symbol.datawedge.api.GET_VERSION_INFO";
+    public static final String RESULT_GET_VERSION_INFO = "com.symbol.datawedge.api.RESULT_GET_VERSION_INFO";
+
+
+    public static final String NOTIFICATION = "com.symbol.datawedge.api.NOTIFICATION";
+    public static final String CREATE_PROFILE = "com.symbol.datawedge.api.CREATE_PROFILE";
+    public static final String SEND_RESULT = "SEND_RESULT";
 }
 

@@ -4,3 +4,4 @@
 .DS_Store
 /captures
 app/google-services.json
+.idea
